@@ -8,6 +8,7 @@ const express = require("express");
 const cors = require('cors');
 const app = express();
 const bodyParser = require('body-parser');
+const { token } = require("./js/tokenAdministration");
 //const bcrypt = require("bcrypt");
 
 // Online RSA Key Generator
@@ -29,26 +30,46 @@ app.use("/", bodyParser.urlencoded({ extended: true }));
 app.use(cors());
 
 app.use("/", function(req, res, next) {
-    console.log(">_ " + req.method + ": " + req.originalUrl);
-    if (Object.keys(req.query).length != 0)
-        console.log("Parametri GET: " + JSON.stringify(req.query));
-    if (Object.keys(req.body).length != 0)
-        console.log("Parametri BODY: " + JSON.stringify(req.body));
-    next();
+    if(req.originalUrl.includes("api")  || req.originalUrl.includes("index")  ){
+        console.log(">_ " + req.method + ": " + req.originalUrl);
+        if (Object.keys(req.query).length != 0)
+            console.log("Parametri GET: " + JSON.stringify(req.query));
+        if (Object.keys(req.body).length != 0)
+            console.log("Parametri BODY: " + JSON.stringify(req.body));
+    }
+        next();
+
 });
 
 app.use("/", express.static('./static'));
 
-app.get("/api/elencoDomande", function (req,res){
-    tokenAdministration.ctrlTokenLocalStorage(req,function (payload){
-        if(!payload.err_exp){   // Token OK
-            // query per prelevare le domande
+//middleware che controlla il token a tutte le route eccetto a quella dell login
+app.use("/", function(req,res,next){
+    
+    if(req.originalUrl.includes("/api") && !req.originalUrl.includes("/login")){
+        tokenAdministration.ctrlTokenLocalStorage(req,function (payload){
+            if(!payload.err_exp){   // Token OK
+                console.log("this mf has a token")
+                next()
+            }else{  // Token inesistente o scaduto
+                console.log(payload.message);
+                error(req,res,{code:403,message:payload.message});
+            }
+        })
+    }
+    else
+        next()
+    
+})
+app.get("/api/user", function (req, res){
+    tokenAdministration.ctrlTokenLocalStorage(req, function(payload){
+        console.log(payload)
+        mongoFunctions.find(res, "users", {_id:payload._id}, {pwd:0})
+    })
+});
 
-        }else{  // Token inesistente o scaduto
-            console.log(payload.message);
-            error(req,res,{code:403,message:payload.message});
-        }
-    });
+app.get("/api/elencoDomande", function (req,res){
+    mongoFunctions.find(res, "domande",{},{correct:0})    
 });
 
 app.post("/api/login",function (req,res){

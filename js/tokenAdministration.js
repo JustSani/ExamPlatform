@@ -44,13 +44,11 @@ tokenAdministration.prototype.ctrlToken = function (req,callback){
 
 tokenAdministration.prototype.createToken = function (user){
     this.token=jwt.sign({
-        "user":user.user,
-        /*"cognome":user.cognome,
-        "nome":user.nome,
-        "mail":user.mail,*/
+        "_id":user[0]._id,
+        "user":user[0].user,        
         "exp":Math.floor(Date.now()/1000 + 60 * 60 * 24)
     },this.privateKey);
-    console.log("Creato nuovo token: " + this.token);
+    
 }
 
 tokenAdministration.prototype.readCookie = function (req,nome){
