@@ -6,23 +6,36 @@
     <title>Zona personale</title>
 	<link rel="icon" href="img/icoVallauri.png" type="image/png" />
 	<link rel="stylesheet" href="fontawesome-free-5.11.2/css/all.css">
-    <link rel="stylesheet" href="bootstrap-4.2.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
-    <script type="text/javascript" src="bootstrap-4.2.1/jquery/jquery.js"></script>
-    <script type="text/javascript" src="bootstrap-4.2.1/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <script type="text/javascript" src="libreria.js"></script>
     <script type="text/javascript" src="personalPage.js"></script>
 	
 	<style>
+		.vote-container{
+			border-radius: 100px 20px 20px 100px; background-color: white; min-height: 50px;
+		}
+		.vote-icon{
+			border: 2px solid #0d6efd;
+			min-width: 45px;min-height: 45px; align-items: center;
+		}
+		.vote-info{
+			text-align: right; width: 90%;
+		}
 		.card-option{
-			height: 40vh;
-			padding: 5px;
+			padding:5px;
+			min-height: 100px;
+			width: 100%;
 		}
 		.card-option:hover{
 			background-color: red;
 		}
 		.inner{
-			height: 37vh;
+			min-height: 90px;
+			padding: 20px;
 			border-radius: 20px 20px 20px 20px ;
 		}
 
@@ -62,68 +75,106 @@
 	</nav>
 	<br>
 	
-	<div style="max-width: 1200px;" class="section">
+	<div style="max-width: 70vw" class="section">
 			<div class="row">
-				<div class="col-6 card-option"><div class="inner" style="background-color: green;">
-				<br><hr></div></div>
-				<div class="col-3 card-option"><div class="inner" style="background-color: blue;"></div></div>
-				<div class="col-3 card-option"><div class="inner" style="background-color: blue;"></div></div>
-			</div>
-			<div class="row">
-				<div class="col-3 card-option" >
-					<p><b>Funzioni integrate:</b></p>
-					<ul>
-					  <li>Sloggarsi distruggendo il token</li>
-					  <li>Iniziare una nuova prova</li>
-					  <li>Tabella cliccabile per rivedere le prove (se effettuate)</li>
-					</ul>
+				<div class="col-md-4">
+					<div class="card-option">
+						<div class="inner text-light" style="background-color: purple;">
+							<div class="d-flex justify-start" >
+								<h1>22</h1>
+								<h2 class="ml-2">domenica</h2>
+							</div>
+							settembre 2023
+						</div>
+					</div>
 				</div>
-				<div class="col-3 card-option"  ></div>
-				<div class="col-3 card-option"  ><div class="inner" style="background-color: blue;"></div></div>
-				<div class="col-3 card-option"  ><div class="inner" style="background-color: blue;"></div></div>
+				<div class="col-md-4">
+					<div class="card-option">
+						<div class="inner text-light" style="background-color: blue;">
+							<div class="d-flex justify-start" >
+								<svg xmlns="http://www.w3.org/2000/svg" width="70" height="70" fill="white" class="bi bi-bar-chart-line mr-5" viewBox="0 0 16 16">
+									<path d="M11 2a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v12h.5a.5.5 0 0 1 0 1H.5a.5.5 0 0 1 0-1H1v-3a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3h1V7a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v7h1V2zm1 12h2V2h-2v12zm-3 0V7H7v7h2zm-5 0v-3H2v3h2z"/>
+								</svg>
+								<br>
+								<h1 class="display-4">8.33</h1>
+							</div>
+							<br>
+							Media dei voti
+							<div class="d-flex justify-content-end">
+								<b>Ultimi voti inseriti</b>
+							</div>
+							<div class="d-flex text-dark p-1 vote-container mt-2" >
+								<div class="d-flex justify-content-center rounded-circle ml-3 vote-icon" ><b>10</b></div>
+								<div class="mr-3 vote-info">
+									<b>Sistemi e reti</b><br>
+									<i>11/04/2022</i>
+								</div>
+							</div>
+							<div class="d-flex text-dark p-1 vote-container mt-2" >
+								<div class="d-flex justify-content-center rounded-circle ml-3 vote-icon" ><b>10</b></div>
+								<div class="mr-3 vote-info">
+									<b>Sistemi e reti</b><br>
+									<i>11/04/2022</i>
+								</div>
+							</div>
+							<div class="d-flex text-dark p-1 vote-container mt-2" >
+								<div class="d-flex justify-content-center rounded-circle ml-3 vote-icon" ><b>10</b></div>
+								<div class="mr-3 vote-info">
+									<b>Sistemi e reti</b><br>
+									<i>11/04/2022</i>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-4 ">
+					<div class="card-option">
+						<div class="inner text-light" style="background-color: rgb(36, 173, 36);">
+							<div class="d-flex justify-start" >
+								<svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="white" class="bi bi-file-person-fill mr-2" viewBox="0 0 16 16">
+									<path d="M12 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zm-1 7a3 3 0 1 1-6 0 3 3 0 0 1 6 0zm-3 4c2.623 0 4.146.826 5 1.755V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1v-1.245C3.854 11.825 5.377 11 8 11z"/>
+								  </svg>
+								<br>
+								<h2 >Area personale</h2>
+							</div>
+							<br>
+							Visualizza i tuoi dati personali
+						</div>
+					</div>
+					<div class="card-option">
+						<div class="inner text-light" style="background-color: rgb(173, 53, 53);">
+							<div class="d-flex justify-start" >
+								<svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-list-check mr-2" viewBox="0 0 16 16">
+									<path fill-rule="evenodd" d="M5 11.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zM3.854 2.146a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 1 1 .708-.708L2 3.293l1.146-1.147a.5.5 0 0 1 .708 0zm0 4a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 1 1 .708-.708L2 7.293l1.146-1.147a.5.5 0 0 1 .708 0zm0 4a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 0 1 .708-.708l.146.147 1.146-1.147a.5.5 0 0 1 .708 0z"/>
+								  </svg>
+								<br>
+								<h2 >Test disponibili</h2>
+							</div>
+							<br>
+							Esegui nuovi test
+						</div>
+					</div>
+					<div class="card-option">
+						<div class="inner text-light" style="background-color: blue;">
+							<div class="d-flex justify-start" >
+								<svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="white" class="bi bi-bar-chart-line mr-2" viewBox="0 0 16 16">
+									<path d="M11 2a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v12h.5a.5.5 0 0 1 0 1H.5a.5.5 0 0 1 0-1H1v-3a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3h1V7a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v7h1V2zm1 12h2V2h-2v12zm-3 0V7H7v7h2zm-5 0v-3H2v3h2z"/>
+								</svg>
+								<br>
+								<h2 >Registro voti</h2>
+							</div>
+							<br>
+							Visualizza i voti presi
+						</div>
+					</div>
+				</div>
+				
+				
 			</div>
+			
 	</div>
 	 
-	<div style="max-width: 60vw" class="section">
-		<div class="row">
-			<div class="col-6 blocks">
-				<button type="button" class="btn btn-primary form-control" id="startTest">Effettua nuovo test</button>
-			</div>
-			<div class="col-6">
-				
-
-			</div>
-		</div>
-		<br>
-		<hr >
-		<br>
-		<h3>Prove effettuate</h3>
-		<br>
-		<table id="tableProve" class="table table-striped table-hover" >
-			<thead>
-			  <tr>
-				<th scope="col">#</th>
-				<th scope="col">Data</th>
-				<th scope="col">Risposte Giuste</th>
-				<th scope="col">Risposte Errate</th>
-				<th scope="col">Risposte non date</th>
-				<th scope="col">Voto finale</th>
-			  </tr>
-			</thead>
-			<tbody id="tbodyTable">
-			  <tr>
-				<th scope="row">1</th>
-				<td>17-02-23</td>
-				<td>10</td>
-				<td>0</td>
-				<td>0</td>
-				<td>10</td>
-			  </tr>
-			</tbody>
-		  </table>
-		
-	</div>
-
+	
 	<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 </body>
 </html>
