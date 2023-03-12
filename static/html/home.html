@@ -31,9 +31,11 @@
 			width: 100%;
 		}
 		.card-option:hover{
-			background-color: red;
+			background-color: #0d6efd;
+			border-radius: 20px 20px 20px 20px; 
 		}
 		.inner{
+			cursor: pointer;
 			min-height: 90px;
 			padding: 20px;
 			border-radius: 20px 20px 20px 20px ;
@@ -90,7 +92,7 @@
 				</div>
 				<div class="col-md-4">
 					<div class="card-option">
-						<div class="inner text-light" style="background-color: blue;">
+						<div class="inner text-light" style="background-color: blue;" id="votiDiv">
 							<div class="d-flex justify-start" >
 								<svg xmlns="http://www.w3.org/2000/svg" width="70" height="70" fill="white" class="bi bi-bar-chart-line mr-5" viewBox="0 0 16 16">
 									<path d="M11 2a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v12h.5a.5.5 0 0 1 0 1H.5a.5.5 0 0 1 0-1H1v-3a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3h1V7a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v7h1V2zm1 12h2V2h-2v12zm-3 0V7H7v7h2zm-5 0v-3H2v3h2z"/>
@@ -129,7 +131,7 @@
 				</div>
 				<div class="col-md-4 ">
 					<div class="card-option">
-						<div class="inner text-light" style="background-color: rgb(36, 173, 36);">
+						<div class="inner text-light" style="background-color: rgb(36, 173, 36);" id="profileDiv">
 							<div class="d-flex justify-start" >
 								<svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="white" class="bi bi-file-person-fill mr-2" viewBox="0 0 16 16">
 									<path d="M12 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zm-1 7a3 3 0 1 1-6 0 3 3 0 0 1 6 0zm-3 4c2.623 0 4.146.826 5 1.755V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1v-1.245C3.854 11.825 5.377 11 8 11z"/>
@@ -142,7 +144,7 @@
 						</div>
 					</div>
 					<div class="card-option">
-						<div class="inner text-light" style="background-color: rgb(173, 53, 53);">
+						<div class="inner text-light" style="background-color: rgb(173, 53, 53);" id="testDiv">
 							<div class="d-flex justify-start" >
 								<svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-list-check mr-2" viewBox="0 0 16 16">
 									<path fill-rule="evenodd" d="M5 11.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zM3.854 2.146a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 1 1 .708-.708L2 3.293l1.146-1.147a.5.5 0 0 1 .708 0zm0 4a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 1 1 .708-.708L2 7.293l1.146-1.147a.5.5 0 0 1 .708 0zm0 4a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 0 1 .708-.708l.146.147 1.146-1.147a.5.5 0 0 1 .708 0z"/>
@@ -155,7 +157,7 @@
 						</div>
 					</div>
 					<div class="card-option">
-						<div class="inner text-light" style="background-color: blue;">
+						<div class="inner text-light" style="background-color: blue;" id="registroDiv">
 							<div class="d-flex justify-start" >
 								<svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="white" class="bi bi-bar-chart-line mr-2" viewBox="0 0 16 16">
 									<path d="M11 2a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v12h.5a.5.5 0 0 1 0 1H.5a.5.5 0 0 1 0-1H1v-3a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3h1V7a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v7h1V2zm1 12h2V2h-2v12zm-3 0V7H7v7h2zm-5 0v-3H2v3h2z"/>
@@ -177,4 +179,20 @@
 	
 	<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 </body>
+
+<script>
+	$("#profileDiv").on("click", function(){
+		window.location.href="profile.html";
+	})
+	$("#votiDiv").on("click", function(){
+		window.location.href="registro.html";
+	})
+	$("#testDiv").on("click", function(){
+		window.location.href="tests.html";
+	})
+	$("#registroDiv").on("click", function(){
+		window.location.href="registro.html";
+	})
+	
+</script>
 </html>
