@@ -1,7 +1,10 @@
 [{
     "_id" : 1,
     "user" : "user",
-    "pwd" : "pwd"
+    "pwd" : "pwd",
+    "email":"fabiosanino@gmail.com",
+    "password": "hashed password"
+    
 },
 {
     "_id" : 2,

@@ -29,9 +29,33 @@
 			font-weight:bold;
 		}
 	</style>
+	<script>
+		if(performance.navigation.type == 1)
+        	localStorage.removeItem("token")
+	</script>
 </head>
 
 <body>
+	<div class="modal" tabindex="-1" role="dialog" id="modalAvviso">
+		<div class="modal-dialog" role="document">
+		  <div class="modal-content">
+			<div class="modal-header">
+			  <h5 class="modal-title">Avviso!</h5>
+			  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+			  </button>
+			</div>
+			<div class="modal-body">
+			  <p>La verifica verrà consegnta, procedere?</p>
+			</div>
+			<div class="modal-footer">
+			  <button type="button" class="btn btn-primary" id="sendRisposte">Consegna</button>
+			  <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+			</div>
+		  </div>
+		</div>
+	  </div>
+
 	<div class="container-fluid" id="mainForm">
 		<div class="alert alert-light text-center">
 			<div class="row" style="width:100%">
@@ -44,7 +68,7 @@
 				</div>
 				<div class="col-sm-2"></div>
 			</div>
-	</div>
+		</div>
 		
 	<!-- elenco domande-->
 	<div class="row">
@@ -61,7 +85,14 @@
 		</div>
 		<div class="col-sm-2"></div>
 	</div>
-	<div class="row">
+	<center>
+		<input type="button" id="consegna" class="btn btn-primary" value="Invia">
+	</center>
+	</div>
+	<br>
+	<br>
+	<br>
+	<!--div class="row">
 		<div class="col-sm-2"></div>
 		<div class="col-sm-8 form-group" style="margin-top:20px; ">
 			<div class="alert alert-success alert-dismissible fade show" id="saveLog">
@@ -69,7 +100,9 @@
 			</div>
 		</div>
 		<div class="col-sm-2"></div>
-	</div>
+	</div-->
+
+	
 </div> <!-- end container -->
 </body>
 </html>
