@@ -10,6 +10,7 @@ let tokenAdministration=function (){
 
 tokenAdministration.prototype.ctrlTokenLocalStorage = function (req,callback){
     const token = req.headers["token"].split(' ')[1];
+    //console.log(token)
     if(token != "null"){
         console.log("ctrlTokenLocalStorage token not null");
         jwt.verify(token,this.privateKey,function (err,data){

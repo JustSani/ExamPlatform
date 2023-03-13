@@ -1,5 +1,6 @@
 [
     {
+        "_id": 1,
         "domanda" : "Definizione di processo :",
         "risposte": ["Istanza di un programma in esecuzione all'interno della CPU su un certo insieme di dati",
         "Istanza di un programma caricato in memoria centrale ed in esecuzione su un certo insieme di dati",
@@ -9,6 +10,7 @@
 		"correct" : 1
    },
    {
+    "_id": 2,
         "domanda" : "Il sistema operativo :",
         "risposte": ["e' un insieme di driver mirati alla gestione delle risorse presenti in un Personal Computer",
         "e' un software di base mirato alla gestione delle risorse presenti in un Personal Computer",
@@ -18,6 +20,7 @@
 		"correct" : 1
    },
    {
+    "_id": 3,
         "domanda" : "che cosa si intende con il termine SHELL ?",
         "risposte": ["Il componente piu' interno del SO, che si occupa di gestire l'esecuzione dei processi",
         "Il componente piu' esterno del SO, che si occupa di gestire l'esecuzione dei processi",
@@ -28,6 +31,7 @@
 		"correct" : 5
    },
    {
+    "_id": 4,
         "domanda" : "Quale dei seguenti acronimi rappresenta un tipo di SHELL ?",
         "risposte": ["UID",
         "CHS",
@@ -38,6 +42,7 @@
 		"correct" : 3
    },
    {
+    "_id": 5,
         "domanda" : "Che cosa si intende con il termine Device Driver ?",
         "risposte": ["un generico dispositivo esterno",
         "La scheda di controllo di un dispositivo",
@@ -48,6 +53,7 @@
 		"correct" : 2
    },
    {
+    "_id": 6,
         "domanda" : "Che cosa si intende per portabilita' di una applicazione ?" ,
         "risposte": ["una applicazione portabile su qualunque supporto magnetico",
         "una applicazione che puo' essere eseguita indipendentemente dal Supporto Hardware",
@@ -58,6 +64,7 @@
 		"correct" : 5
    },
    {
+    "_id": 7,
         "domanda" : "Quale di queste caratteristiche di una applicazione e' garantita dal Sistema Operativo ? ",
         "risposte": ["La possibilita' di eseguire una applicazione indipendentemente dal Supporto Hardware sottostante",
         "La possibilita' di eseguire una applicazione indipendentemente dalla piattaforma software sottostante",
@@ -68,6 +75,7 @@
 		"correct" : 0
    },
    {
+    "_id": 8,
         "domanda" : "Un sistema Dedicato e' un sistema in cui:",
         "risposte": ["un solo processo per volta viene eseguito fino alla sua terminazione",
         "un solo processo per volta puo' eseguire operazioni di IO",
@@ -77,6 +85,7 @@
 		"correct" : 0
    },
    {
+    "_id": 9,
         "domanda" : "I sistemi Batch sequenziali sono sistemi in cui :",
         "risposte": ["job appartenenti ad utenti diversi vengono eseguiti alternativamente con cadenze temporali ben precise",
         "job appartenenti ad utenti diversi vengono eseguiti in sequenza ognuno fino alla propria terminazione",
@@ -87,6 +96,7 @@
 		"correct" : 1
    },
    {
+    "_id": 10,
         "domanda" : "I sistemi Batch multiprogrammati sono sistemi in cui :",
         "risposte": ["job appartenenti ad utenti diversi vengono eseguiti alternativamente mediante una ben precisa cadenza temporale",
         "job appartenenti ad utenti diversi vengono eseguiti in sequenza ognuno fino alla propria terminazione",

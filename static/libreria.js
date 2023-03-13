@@ -24,6 +24,7 @@ function sendRequestNoCallback(url,method,parameters){
 		mycontentType="application/json; charset=UTF-8";
 		parameters=JSON.stringify(parameters);
 	}
+	//console.log(localStorage.getItem("token"))
 	return $.ajax({
 		url: url,
 		contentType: mycontentType,

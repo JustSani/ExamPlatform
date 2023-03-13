@@ -11,7 +11,7 @@ $(()=>{
             console.log(serverData)
             serverData=JSON.parse(serverData);
             localStorage.setItem("token",serverData.token);
-            window.location.href="personalPage.html";
+            window.location.href="home.html";
         });
     });
 });
