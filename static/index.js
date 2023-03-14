@@ -1,6 +1,7 @@
 "use strict";
 
 $(()=>{
+    $("#modalVoto").show()
     console.log(window.location.search)
     let params = {
         id: window.location.search.split('=')[1]
@@ -77,19 +78,27 @@ $(()=>{
     })
     
     $("#sendRisposte").on("click", function(){
-        let answers = []
+        
+        let answers = {}
         let r = "ABCDEF"
+        
         for (let i = 0; i < 10; i++){
             let val = $("input[name='ANS" + i+"']:checked").val()
             let ans = {};
-            ans["ANS" + i] = val
-            answers.push(ans)
+            //ans["ANS" + i] = val
+            answers["ANS" + i] = val
             
         }
-        let sendAnswers = sendRequestNoCallback("/api/sendRisposte", "POST", answers)
+        let params = {
+            _id :window.location.search.split('=')[1],
+            answers: answers
+        }
+        let sendAnswers = sendRequestNoCallback("/api/sendRisposte", "POST", params)
         sendAnswers.done(function(resp){
             console.log(answers)
-            window.location.href="home.html";
+            
+            
+            //window.location.href="home.html";
         })
         sendAnswers.fail(function(err){
             error(err)

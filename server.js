@@ -27,12 +27,15 @@ var middleware = require("./middleware")
 app.use("/", middleware)
 
 //aggiunta api
-var api = require('./api')
+var api = require('./api');
+const { token } = require('./js/tokenAdministration');
+const tokenAdministration = require('./js/tokenAdministration');
 app.use("/api", api)
 
 
 
 app.get("/debug/add-domande", function(req,res){
+    
     mongoFunctions.insertMany(res, "domande", [
         {
             "domanda" : "Definizione di processo :",

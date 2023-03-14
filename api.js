@@ -63,8 +63,54 @@ router.post("/login",function (req,res){
 
 router.post("/sendRisposte", function(req, res){
     console.log(req.body)
-    console.log("Ok")
-    res.end("Ok")
+    let idTest = req.body["_id"]
+    let answers = req.body["answers"]
+    idTest = new ObjectId(idTest)
+    mongoFunctions.find2(res, "esami", {_id:idTest}, {}, function(quer){
+        let punteggio = 0;
+        console.log("length" + quer[0].domande.length)
+        for(let j = 0; j <quer[0].domande.length; j++){
+            let q = quer[0].domande[j]
+            console.log("id" + q)
+            console.log(j)
+            mongoFunctions.find2(res, "domande", {_id: q}, {}, function(quer2){
+                console.log(quer2[0].correct)
+                console.log(answers["ANS" + j])
+                if(answers["ANS" + j] && answers["ANS" + j] == quer2[0].correct)
+                {
+                    console.log("CORRETTA: +1")
+                    punteggio += 1
+                }    
+                else if(answers["ANS" + j] && answers["ANS + j"] != quer2[0].correct) {
+                    console.log("ERRATA" )
+                    //punteggio -= 0.25
+                }
+                else{
+                    console.log("nON DATA")
+                }
+
+                if(quer[0].domande.length == j +1 )
+                {
+                    console.log("Voto finale:" + punteggio)
+                    
+                    tokenAdministration.ctrlTokenLocalStorage(req, function(payload){
+                        let idUser = new Object(payload._id)
+                        let obj = {
+                            _idUser : idUser,
+                            giuste: punteggio ,
+                            totale: j + 1,
+                            _idEsame: idTest,
+                            risposte: answers
+                        }
+                        mongoFunctions.insertOne(res, "voti", obj)
+                    } )
+                }
+                    
+                
+            })
+        }
+
+    })
 })
 
 
