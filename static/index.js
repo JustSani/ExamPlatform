@@ -1,7 +1,7 @@
 "use strict";
 
 $(()=>{
-    $("#modalVoto").show()
+    let votoId ="";
     console.log(window.location.search)
     let params = {
         id: window.location.search.split('=')[1]
@@ -68,6 +68,7 @@ $(()=>{
         //window.location.href="login.html";
     });
     $("#consegna").on("click", function(){
+        
         $('#modalAvviso').modal('show');
     })
     
@@ -78,7 +79,7 @@ $(()=>{
     })
     
     $("#sendRisposte").on("click", function(){
-        
+        $("#modalAvviso").hide();
         let answers = {}
         let r = "ABCDEF"
         
@@ -95,14 +96,44 @@ $(()=>{
         }
         let sendAnswers = sendRequestNoCallback("/api/sendRisposte", "POST", params)
         sendAnswers.done(function(resp){
-            console.log(answers)
-            
-            
-            //window.location.href="home.html";
+            //alert(resp)
+            votoId = JSON.parse(resp).ris[0]
+            //votoId = resp.split("insertedId\":\"")[1].split("\"}}")[0]
+            setTimeout(function(){
+                $("#modalVoto").show();
+                console.log(votoId.giuste + " " + votoId.totale)
+                let voto = votoId.giuste * 10 / votoId.totale
+                $("#bigVoto").text(voto)
+            }, 1000)
+                        
         })
         sendAnswers.fail(function(err){
             error(err)
         })
+    })
+
+    $("#closeVoto").on("click", function(){
+        $("#modalVoto").hide()
+        window.location.href="home.html"
+    })
+
+    $("#emailButton").on("click", function(){
+        if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test($("#emailInput").val()))
+        {
+            $("#emailButton").text("")
+            $("#emailButton").append("<span class='spinner-grow spinner-grow-sm' role='status' aria-hidden='true'></span><span class='sr-only'>Loading...</span>")
+            let sendMail= sendRequestNoCallback("/api/sendVoteMail","GET", {_idVoto:votoId._id, email:$("#emailInput").val()});
+            sendMail.fail(function(err){
+                alert("something went wrong");
+            })            
+            setTimeout(function(){
+                $("#emailButton").text("")
+                $("#emailButton").append("<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-check2-all' viewBox='0 0 16 16'><path d='M12.354 4.354a.5.5 0 0 0-.708-.708L5 10.293 1.854 7.146a.5.5 0 1 0-.708.708l3.5 3.5a.5.5 0 0 0 .708 0l7-7zm-4.208 7-.896-.897.707-.707.543.543 6.646-6.647a.5.5 0 0 1 .708.708l-7 7a.5.5 0 0 1-.708 0z'/><path d='m5.354 7.146.896.897-.707.707-.897-.896a.5.5 0 1 1 .708-.708z'/></svg>")
+            }, 2000)
+        }
+        else
+            alert("Email non valida")
+       
     })
 
 });

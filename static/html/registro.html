@@ -11,7 +11,7 @@
   <script type="text/javascript" src="bootstrap-4.2.1/jquery/jquery.js"></script>
   <script type="text/javascript" src="bootstrap-4.2.1/js/bootstrap.min.js"></script>
   <script type="text/javascript" src="libreria.js"></script>
-	
+  
 	<style>
 		
 		.section{
@@ -34,55 +34,68 @@
 	<div style="max-width: 70vw" class="section">
         <button type="button" class="btn btn-primary" id="back">Torna indietro</button>
         <br><br>
-		<table class="table">
+		    <table class="table table-striped table-hover">
             <thead>
               <tr>
                 <th scope="col">#</th>
-                <th scope="col">First</th>
-                <th scope="col">Last</th>
-                <th scope="col">Handle</th>
+                <th scope="col">Voto</th>
+                <th scope="col">Nome Esame</th>
+                <th scope="col">Giuste/Totali</th>
+                <th scope="col">Data</th>
               </tr>
             </thead>
-            <tbody>
-              <tr>
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-              </tr>
-              <tr>
-                <th scope="row">2</th>
-                <td>Jacob</td>
-                <td>Thornton</td>
-                <td>@fat</td>
-              </tr>
-              <tr>
-                <th scope="row">3</th>
-                <td>Larry</td>
-                <td>the Bird</td>
-                <td>@twitter</td>
-              </tr>
+            <tbody id="tBody">
             </tbody>
           </table>
+          <small>(Le row sono cliccabili)</small>
 	</div>
 	 
 	
 </body>
 <script>
   $(() =>{
-    $("#back").on("click", function(){
-        window.location.href="home.html"
-    })
-    
-    let questions=sendRequestNoCallback("/api/elencoVoti","get",{});
-    questions.done(function (serverData){
-        alert("richiesta andata a buon fine")
-    })
-    questions.fail(function(err){
-        alert(err)
-    })
+      $("#back").on("click", function(){
+          window.location.href="home.html"
+      })
+      let questions=sendRequestNoCallback("/api/elencoVoti","get",{});
+      questions.done(function (serverData){
+          //console.log(serverData)
+          serverData = JSON.parse(serverData).ris
+          let esami = sendRequestNoCallback("/api/elencoEsami", "get", {})
+          esami.done(function(esami){
+              
+              esami = JSON.parse(esami).ris
+              console.log(esami)
+              for(let i = 0; i < serverData.length; i++){
+                let row = $("<tr>")
+                row.append($("<th>").text(i + 1))
+                let voto = serverData[i].giuste * 10 / serverData[i].totale
+                row.append($("<td>").text(voto))
+                let j; 
+                for(j = 0; j < esami.length; j++){
+                  if(esami[j]._id == serverData[i]._idEsame){
+                    row.append($("<td>").text(esami[j].nome))
+                    break;
+                  }
+                }
+                row.append($("<td>").text(serverData[i].giuste + "/"+ serverData[i].totale))
+                row.append($("<td>").text(serverData[i].date))
+                row.on("click", function(){
+                  window.location.href="correzione.html?_id=" + serverData[i]._id
+                })
+                $("#tBody").append(row)
+                //alert(serverData[i])
+              }
+          })
+          esami.fail(function(err){
+              alert(err)
+          })
+      })
+      questions.fail(function(err){
+          alert(err)
+      })
 
-  })
+    })
     
 
 </script>

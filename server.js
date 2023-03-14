@@ -36,6 +36,7 @@ app.use("/api", api)
 
 app.get("/debug/add-domande", function(req,res){
     
+    /*
     mongoFunctions.insertMany(res, "domande", [
         {
             "domanda" : "Definizione di processo :",
@@ -145,7 +146,7 @@ app.get("/debug/add-domande", function(req,res){
             {"F": "piu' job possono accedere in contemporanea alla CPU "}],
             "correct" : "C"
        }
-    ])
+    //])*/
 })
 
 app.get("/debug/add-users", function(req,res){
@@ -175,6 +176,7 @@ app.get("/debug/add-users", function(req,res){
 
 
 /* ************************************************************* */
+
 function error(req, res, err) {
     res.status(err.code).send(err.message);
 }

@@ -30,7 +30,7 @@ router.use("/", function(req,res,next){
     if(req.originalUrl.includes("/api") && !req.originalUrl.includes("/login")){
         tokenAdministration.ctrlTokenLocalStorage(req,function (payload){
             if(!payload.err_exp){   // Token OK
-                console.log("this mf has a token")
+                //console.log("this mf has a token")
                 next()
             }else{  // Token inesistente o scaduto
                 console.log(payload.message);
@@ -61,6 +61,8 @@ router.use("/",function(req,res,next){
         getFile("./static/html/tests.html", res)
     else if(req.originalUrl.includes("esame.html"))
         getFile("./static/html/esame.html", res)
+    else if(req.originalUrl.includes("correzione.html"))
+        getFile("./static/html/correzione.html", res)
     else if(req.originalUrl.includes("storicoVerifiche.html"))
         getFile("./static/html/storicoVerifiche.html", res)
     else

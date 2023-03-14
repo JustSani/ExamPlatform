@@ -95,4 +95,19 @@ mongoFunctions.prototype.insertOne=function (res, col, obj){
         });
     });
 }
+mongoFunctions.prototype.insertOne2=function (res, col, obj, callback){
+    creaConnessione(nomeDb, res, function(conn, db){
+        let promise = db.collection(col).insertOne(obj);
+        promise.then(function(ris){
+            conn.close();
+            callback(ris)
+        });
+        promise.catch(function(err){
+            obj = { cod:-2, desc:"Errore nell'inserimento"}
+            res.end(JSON.stringify(obj));
+            conn.close();
+        });
+    });
+}
+
 module.exports = new mongoFunctions();
