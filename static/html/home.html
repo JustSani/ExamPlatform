@@ -10,7 +10,7 @@
 
 	<script type="text/javascript" src="bootstrap-4.2.1/jquery/jquery.js"></script>
 	<script type="text/javascript" src="bootstrap-4.2.1/js/bootstrap.min.js"></script><script type="text/javascript" src="libreria.js"></script>
-    <script type="text/javascript" src="personalPage.js"></script>
+   
 	
 	<style>
 		.vote-container{
@@ -90,12 +90,11 @@
 			<div class="row">
 				<div class="col-md-4">
 					<div class="card-option">
-						<div class="inner text-light" style="background-color: purple;">
+						<div class="inner text-light" style="background-color: purple;" id="extenedMonth">
 							<div class="d-flex justify-start" >
-								<h1>22</h1>
-								<h2 class="ml-2">domenica</h2>
+								<h1 id="dayDiv">22</h1>
+								<h2 class="ml-2" id="extenedDay">domenica</h2>
 							</div>
-							settembre 2023
 						</div>
 					</div>
 				</div>
@@ -107,34 +106,11 @@
 									<path d="M11 2a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v12h.5a.5.5 0 0 1 0 1H.5a.5.5 0 0 1 0-1H1v-3a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3h1V7a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v7h1V2zm1 12h2V2h-2v12zm-3 0V7H7v7h2zm-5 0v-3H2v3h2z"/>
 								</svg>
 								<br>
-								<h1 class="display-4">8.33</h1>
+								<h1 class="display-4" id="media">0</h1>
 							</div>
 							<br>
 							Media dei voti
-							<div class="d-flex justify-content-end">
-								<b>Ultimi voti inseriti</b>
-							</div>
-							<div class="d-flex text-dark p-1 vote-container mt-2" >
-								<div class="d-flex justify-content-center rounded-circle ml-3 vote-icon" ><b>10</b></div>
-								<div class="mr-3 vote-info">
-									<b>Sistemi e reti</b><br>
-									<i>11/04/2022</i>
-								</div>
-							</div>
-							<div class="d-flex text-dark p-1 vote-container mt-2" >
-								<div class="d-flex justify-content-center rounded-circle ml-3 vote-icon" ><b>10</b></div>
-								<div class="mr-3 vote-info">
-									<b>Sistemi e reti</b><br>
-									<i>11/04/2022</i>
-								</div>
-							</div>
-							<div class="d-flex text-dark p-1 vote-container mt-2" >
-								<div class="d-flex justify-content-center rounded-circle ml-3 vote-icon" ><b>10</b></div>
-								<div class="mr-3 vote-info">
-									<b>Sistemi e reti</b><br>
-									<i>11/04/2022</i>
-								</div>
-							</div>
+							
 						</div>
 					</div>
 				</div>
@@ -194,10 +170,55 @@
 	$(() => {
 		let getRecentVotes = sendRequestNoCallback("/api/getRecentGrades", "GET", {} )
 		getRecentVotes.done(function(query){
+			query = JSON.parse(query).ris;
+
+			let votiDiv = $("#votiDiv")
+			let media = 0;
+			if(query.length == 0){
+				votiDiv.append("<br><br>Ancora nessun voto..")
+			}
+			for(let i = 0 ; i < query.length; i++){
+
+				console.log(query[i].giuste)
+				let votoTotale = query[i].giuste * 10 / query[i].totale
+				media += votoTotale
+				//alert(votoTotale)
+				str = "<div class='d-flex text-dark p-1 vote-container mt-2' >" +
+						  "<div class='d-flex justify-content-center rounded-circle ml-3 vote-icon' >" +
+								 "<b>" + votoTotale+ "</b> "+
+							"</div>" +
+							 "<div class='mr-3 vote-info'><b>Sistemi e reti</b><br><i>" + query[i].date + "</i></div>" +
+						 "</div>"
+							
+				votiDiv.append(str)
+			
+			
+			}
+			$("#media").text((media)/3 )
+
+			let getTotalVoti = sendRequestNoCallback("/api/getVotes", "get", {})
+			getTotalVoti.done(function(query2){
+				query2 = JSON.parse(query2).ris
+
+				media = 0;
+				for(let i = 0; i < query2.length; i++){
+					media += query2[i].giuste * 10 / query2[i].totale 
+				}
+				media /= query2.length
+				$("#media").text(Number((media).toFixed(2)) )
+			})
+
+			var event = new Date();
+			var options = { weekday: 'long' };
+			$("#dayDiv").text(event.getDay())
+			$("#extenedDay").text(event.toLocaleDateString('it-IT', options))
+			options = { month: 'long' };
+			$("#extenedMonth").append(event.toLocaleDateString('it-IT', options) + " " + event.getFullYear())
 
 		})
 		getRecentVotes.fail(function(query){
 			console.log(query)
+			
 			alert("Errore")
 		})
 

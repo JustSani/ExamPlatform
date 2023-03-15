@@ -19,6 +19,12 @@ router.get("/elencoVoti", function(req,res){
     })
 })
 
+router.get("/getVotes", function(req,res){
+    tokenAdministration.ctrlTokenLocalStorage(req, function(payload){
+        mongoFunctions.find(res, "voti", {_idUser: payload._id}, {giuste:1, totale:1})
+    })
+})
+
 router.get("/elencoEsami", function(req, res){
     mongoFunctions.find(res, "esami", {}, {})
 })
@@ -59,7 +65,16 @@ router.get("/getCorrezione", function(req, res){
     })
 })
 router.get("/getRecentGrades", function(req, res){
-    mongoFunctions()
+    tokenAdministration.ctrlTokenLocalStorage(req, function(payload){
+        console.log(payload._id)
+        let obj = [
+            {$match: {_idUser: payload._id}},
+            {$project : {giuste: 1, totale: 1, _idEsame: 1, date : 1}},
+            {$sort: {_id: -1}},
+            {$limit: 3}
+        ]
+        mongoFunctions.aggregate(res, "voti", obj)
+    })
 })
 
 function sortAnfFind(answers, domande){

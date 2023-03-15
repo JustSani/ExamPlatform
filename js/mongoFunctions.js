@@ -110,4 +110,20 @@ mongoFunctions.prototype.insertOne2=function (res, col, obj, callback){
     });
 }
 
+mongoFunctions.prototype.aggregate= function (res, col, opzioni){
+    creaConnessione(nomeDb, res, function(conn, db){
+        let promise = db.collection(col).aggregate(opzioni).toArray();
+        promise.then(function(ris){
+            obj = { cod:0, desc:"Dati trovati con successo", ris};
+            res.end(JSON.stringify(obj));
+            conn.close();
+        });
+        promise.catch(function(error){
+            obj = { cod:-2, desc:"Errore nella ricerca"}
+            res.end(JSON.stringify(obj));
+            conn.close();
+        });
+    });
+}
+
 module.exports = new mongoFunctions();
