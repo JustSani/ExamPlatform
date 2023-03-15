@@ -65,7 +65,7 @@ $(()=>{
     });
     questions.fail(function (jqXHR){
         error(jqXHR);
-        //window.location.href="login.html";
+        window.location.href="login.html";
     });
     $("#consegna").on("click", function(){
         

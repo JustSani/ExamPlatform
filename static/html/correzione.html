@@ -14,7 +14,19 @@
 	
 
 </head>
-
+<style>
+	
+	.giusta{
+		border-radius: 5px 5px 5px 5px;
+			background-color: green; color:white; padding: 3px;
+			font-weight: bold;
+		}
+		.sbagliata{
+			background-color: rgb(171, 63, 63); color:white; padding: 3px;
+			border-radius: 5px 5px 5px 5px;
+			font-weight: bold;
+		}
+</style>
 <body>
 	
 	<div class="container-fluid" id="mainForm">
@@ -24,28 +36,25 @@
 				<div class="col-sm-6">
 					<img src="img/vallauri.jpg" class="img-fluid">
 				</div>
-				<button onclick="window.location.href='home.html'">back</button>
 				<div class="col-sm-2"></div>
 			</div>
 		</div>
 	<!-- elenco domande-->
 	<div class="row">
-		<div class="col-sm-2"></div>
-		<div class="col-sm-8 form-group" style="margin-top:20px; ">
+		<div class="col-sm-2">
+		<div class="col-sm-8 form-group" style="margin-top:20px; max-width: 1200px;">
 			<div id="intestazione"></div>
 		</div>
 		<div class="col-sm-2"></div>
 	</div>
-	<div class="row">
-		<div class="col-sm-2"></div>
-		<div class="col-sm-8 form-group" style="margin-top:20px; ">
+	<div style="width: 100%; padding: 40px">
+		<div  style="margin: auto; max-width: 1200px;">
+			<input type="button" id="consegna" class="btn btn-primary" onclick="window.location.href='registro.html'" value="back">
+			<br><br><br><br>
 			<div id="elencoDomande"></div>
 		</div>
-		<div class="col-sm-2"></div>
+		
 	</div>
-	<center>
-		<input type="button" id="consegna" class="btn btn-primary" value="Invia">
-	</center>
 	</div>
 	<br>
 	<br>
@@ -57,6 +66,75 @@
 </body>
 
 <script>
-		
+	$(()=>{
+
+		let votoId ="";
+		console.log(window.location.search)
+		let params = {
+			id: window.location.search.split('=')[1]
+		}
+		console.log(params)
+		let correzione=sendRequestNoCallback("/api/getCorrezione","GET",params);
+		correzione.done(function (serverData){
+			//alert(serverData)
+			serverData = JSON.parse(serverData)
+			let risposteCorrette = serverData.risposteCorrette
+			let risposteUser = serverData.risposteUser
+			let domande = sendRequestNoCallback("/api/getDomande", "GET", {id: serverData._idEsame})
+			domande.done(function(query){
+				console.log(query)
+				query = JSON.parse(query)
+				let countQuestion = 0
+				let countTotalAnswers = 0;
+				for(let j = 0; j < query.length; j++){
+					
+					let quesito = query[j][0]
+					console.log(quesito)
+					let question = $("<div>")
+					question.append($("<h3>").text(quesito.domanda))
+					let countAnswers = 0;
+					
+					for(let i = 0; i < quesito.risposte.length; i++){
+						//console.log(quesito.risposte[i])
+						let div = $("<div>").addClass("form-check")
+						
+						let option = $("<input>").attr("type", "radio").attr("name","ANS" + countQuestion)
+						.val(i).addClass("form-check-input").attr("id",countTotalAnswers)
+						let label = $("<label>").attr("for", countTotalAnswers).text(quesito.risposte[i])
+						.addClass("form-check-label")
+						if(String(i) == risposteCorrette[j]){
+							option.addClass("giusta")
+							label.addClass("giusta")
+						}
+						if(String(i) == risposteUser[j]){
+							option.prop('checked',true);
+							option.addClass("giusta")
+							label.addClass("giusta")
+						}
+						if(String(i) == risposteUser[j] && risposteUser[j] != risposteCorrette[j]){
+							option.addClass("sbagliata")
+							label.addClass("sbagliata")
+						}
+						
+						
+						div.append(option)
+						console.log(i)
+						console.log(quesito.risposte[i])
+						
+						div.append(label)
+						question.append(div)
+						countAnswers++;
+						countTotalAnswers++
+					}
+
+					$("#elencoDomande").append(question)
+					$("#elencoDomande").append($("<br>"))
+					$("#elencoDomande").append($("<hr>"))
+					countQuestion++;
+				};
+				
+			})
+		})  
+	})
 </script>	
 </html>

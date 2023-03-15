@@ -23,30 +23,76 @@ router.get("/elencoEsami", function(req, res){
     mongoFunctions.find(res, "esami", {}, {})
 })
 
+router.get("/getCorrezione", function(req, res){
+    let _id=new ObjectId(req.query.id)
+    console.log(_id)
+    mongoFunctions.find2(res, "voti", {_id:_id}, {},function(query1){
+        console.log(query1)
+        let risposte = query1[0].risposte;
+        let _idEsame = new ObjectId(query1[0]._idEsame);
+        
+        //contiene le risposte date dal Utente
+        let arrRisposte = [];
+        for(let i = 0; i < 5; i++){
+            let currentAnswer = risposte["ANS" + i]
+            if(currentAnswer)
+                arrRisposte.push(currentAnswer)
+            else
+                arrRisposte.push(-1)
+
+        }
+        mongoFunctions.find2(res, "esami", {_id:_idEsame}, {}, function(query2){
+            let domande = query2[0].domande
+            mongoFunctions.find2(res, "domande", {_id:{$in:domande}}, {_id:1, correct:1}, function(query3){
+                console.log(arrRisposte)
+                let sortedComparisableArray = sortAnfFind(query3, domande)
+                console.log(sortedComparisableArray)
+                let obj = {
+                    _idEsame : query1[0]._idEsame,
+                    risposteCorrette: sortedComparisableArray,
+                    risposteUser: arrRisposte
+                }
+                res.end(JSON.stringify(obj))
+            })
+        })
+        
+    })
+})
+router.get("/getRecentGrades", function(req, res){
+    mongoFunctions()
+})
+
+function sortAnfFind(answers, domande){
+    let sort = []
+    for(let i = 0; i < domande.length; i++){
+        for(let j = 0; j < answers.length; j++){ 
+            if(answers[j]._id == domande[i]){
+                sort.push(String(answers[j].correct))             
+                break;
+            }
+        }
+    } 
+    return sort;
+}
 
 router.get("/getDomande", function (req,res){
     let id = new ObjectId(req.query["id"])  
     mongoFunctions.find2(res, "esami",{_id:id},{}, function(ris){
-        console.log("---------")
-        console.log(ris[0].domande)
         let domande = ris[0].domande
         let domandeEsame = []
         for(let i = 0; i < domande.length; i++){
             let ap =domande[i] 
             console.log(domande[i])
             mongoFunctions.find2(res, "domande", {_id:ap},{correct:0}, function(ris2){
-                console.log(ris2)
+                
                 domandeEsame.push(ris2)
                 
                 if(i == domande.length -1)
                     res.end(JSON.stringify(domandeEsame))
 
-                console.log(domandeEsame)  
+                  
             })
         };
-
-        //for(let i = 0; i < ris.)
-        //mongoFunctions.find(res, "domande", {id}, {})
     })    
 });
 
