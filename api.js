@@ -93,7 +93,11 @@ function sortAnfFind(answers, domande){
 router.get("/getDomande", function (req,res){
     let id = new ObjectId(req.query["id"])  
     mongoFunctions.find2(res, "esami",{_id:id},{}, function(ris){
-        let domande = ris[0].domande
+        let domande
+        if(ris[0])
+            domande = ris[0].domande
+        else
+            res.end("NOPE")    
         let domandeEsame = []
         for(let i = 0; i < domande.length; i++){
             let ap =domande[i] 
