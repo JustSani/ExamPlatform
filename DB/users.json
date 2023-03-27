@@ -2,22 +2,35 @@
     "_id" : 1,
     "user" : "user",
     "pwd" : "pwd",
-    "email":"fabiosanino@gmail.com",
-    "password": "hashed password"
-    
+    "data":"03-06-2004",
+    "citta": "bra",
+    "nome": "Fabio",
+    "cognome": "Sanino"    
 },
 {
     "_id" : 2,
     "user" : "gianni",
-    "pwd" : "ottimista"
+    "pwd" : "ottimista",
+    "data":"03-06-2005",
+    "citta": "Fossano",
+    "nome": "Gianni",
+    "cognome": "Ottimista"   
 },
 {
     "_id" : 3,
     "user" : "stella",
-    "pwd" : "bella"
+    "pwd" : "bella",
+    "data":"03-06-2009",
+    "citta": "Firenze",
+    "nome": "Stella",
+    "cognome": "Cadente"   
 },
 {
     "_id" : 4,
     "user" : "gino",
-    "pwd" : "latino"
+    "pwd" : "latino",
+    "data":"03-06-2006",
+    "citta": "Pompei",
+    "nome": "Gino",
+    "cognome": "Latino"
 }]

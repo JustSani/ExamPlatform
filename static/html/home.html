@@ -83,6 +83,16 @@
 		Registro Vallauri
 		</h1></b>
 		</a>
+		
+		<form class="form-inline my-2 my-lg-0">
+			<input class="form-control mr-sm-2" type="button" value="logout" id="logout">
+		</form>
+		<script>
+			$("#logout").on("click", function(){
+				localStorage.removeItem("token")
+        		window.location.href="login.html";
+			})
+		</script>
 	</nav>
 	<br>
 	
@@ -110,7 +120,9 @@
 							</div>
 							<br>
 							Media dei voti
-							
+							<div class="d-flex justify-content-end">
+								<b>Ultimi voti inseriti</b>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -148,10 +160,10 @@
 									<path d="M11 2a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v12h.5a.5.5 0 0 1 0 1H.5a.5.5 0 0 1 0-1H1v-3a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3h1V7a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v7h1V2zm1 12h2V2h-2v12zm-3 0V7H7v7h2zm-5 0v-3H2v3h2z"/>
 								</svg>
 								<br>
-								<h2 >Registro voti</h2>
+								<h2 >Registro Test</h2>
 							</div>
 							<br>
-							Visualizza i voti presi
+							Visualizza i test eseguiti e le correzioni
 						</div>
 					</div>
 				</div>
@@ -196,16 +208,23 @@
 			}
 			$("#media").text((media)/3 )
 
+
 			let getTotalVoti = sendRequestNoCallback("/api/getVotes", "get", {})
 			getTotalVoti.done(function(query2){
-				query2 = JSON.parse(query2).ris
 
-				media = 0;
-				for(let i = 0; i < query2.length; i++){
-					media += query2[i].giuste * 10 / query2[i].totale 
+				query2 = JSON.parse(query2).ris
+				
+				if(query2.length != 0){
+					media = 0;
+					for(let i = 0; i < query2.length; i++){
+						media += query2[i].giuste * 10 / query2[i].totale 
+					}
+					media /= query2.length
+					$("#media").text(Number((media).toFixed(2)) )
 				}
-				media /= query2.length
-				$("#media").text(Number((media).toFixed(2)) )
+				else{
+					$("#media").text(0)
+				}
 			})
 
 			var event = new Date();

@@ -1,12 +1,195 @@
-[
-    {
-        "_idUser": 1,
-        "giuste": 10,
-        "totale": 10,
-        "_idEsame": "dfjdkfndk",
-        "risposte": {
-            "ANS1":1
-            
-        }
-    }
-]
+[{
+  "_id": {
+    "$oid": "6412e7fb9de8e7a375739067"
+  },
+  "_idUser": 1,
+  "giuste": 4,
+  "totale": 5,
+  "_idEsame": {
+    "$oid": "640ef499af8fc62e675869b5"
+  },
+  "risposte": {
+    "ANS0": "3",
+    "ANS1": "5",
+    "ANS2": "0",
+    "ANS3": "1",
+    "ANS4": "2"
+  },
+  "date": "16-3-2023"
+},{
+  "_id": {
+    "$oid": "6412eb879de8e7a37573906c"
+  },
+  "_idUser": 1,
+  "giuste": 2,
+  "totale": 5,
+  "_idEsame": {
+    "$oid": "640ef499af8fc62e675869b6"
+  },
+  "risposte": {
+    "ANS0": "5",
+    "ANS1": "1",
+    "ANS2": "3",
+    "ANS3": "2",
+    "ANS4": "2"
+  },
+  "date": "16-3-2023"
+},{
+  "_id": {
+    "$oid": "6412ec0e9de8e7a37573906d"
+  },
+  "_idUser": 1,
+  "giuste": 1,
+  "totale": 5,
+  "_idEsame": {
+    "$oid": "640ef499af8fc62e675869b6"
+  },
+  "risposte": {
+    "ANS1": "3"
+  },
+  "date": "16-3-2023"
+},{
+  "_id": {
+    "$oid": "6412ec579de8e7a37573906e"
+  },
+  "_idUser": 1,
+  "giuste": 3,
+  "totale": 5,
+  "_idEsame": {
+    "$oid": "640ef499af8fc62e675869b6"
+  },
+  "risposte": {
+    "ANS0": "5",
+    "ANS1": "3",
+    "ANS2": "4",
+    "ANS3": "4",
+    "ANS4": "2"
+  },
+  "date": "16-3-2023"
+},{
+  "_id": {
+    "$oid": "6412ecef3bffb8705114dbc6"
+  },
+  "_idUser": 1,
+  "giuste": 4,
+  "totale": 5,
+  "_idEsame": {
+    "$oid": "640ef499af8fc62e675869b6"
+  },
+  "risposte": {
+    "ANS0": "5",
+    "ANS1": "3",
+    "ANS2": "4",
+    "ANS3": "0",
+    "ANS4": "2"
+  },
+  "date": "16-3-2023"
+},{
+  "_id": {
+    "$oid": "6412eddf3bffb8705114dbc7"
+  },
+  "_idUser": 1,
+  "giuste": 3,
+  "totale": 5,
+  "_idEsame": {
+    "$oid": "640ef499af8fc62e675869b4"
+  },
+  "risposte": {
+    "ANS0": "1",
+    "ANS1": "0",
+    "ANS2": "5",
+    "ANS3": "3",
+    "ANS4": "5"
+  },
+  "date": "16-3-2023"
+},{
+  "_id": {
+    "$oid": "64132588c0cc93ee51dc236e"
+  },
+  "_idUser": 1,
+  "giuste": 4,
+  "totale": 5,
+  "_idEsame": {
+    "$oid": "640ef499af8fc62e675869b5"
+  },
+  "risposte": {
+    "ANS0": "3",
+    "ANS1": "2",
+    "ANS2": "0",
+    "ANS3": "1",
+    "ANS4": "2"
+  },
+  "date": "16-3-2023"
+},{
+  "_id": {
+    "$oid": "641332bd6734f36fc3945d3b"
+  },
+  "_idUser": 1,
+  "giuste": 2,
+  "totale": 5,
+  "_idEsame": {
+    "$oid": "640ef499af8fc62e675869b4"
+  },
+  "risposte": {
+    "ANS0": "0",
+    "ANS1": "0",
+    "ANS2": "5",
+    "ANS3": "3",
+    "ANS4": "5"
+  },
+  "date": "16-3-2023"
+},{
+  "_id": {
+    "$oid": "641334966734f36fc3945d3c"
+  },
+  "_idUser": 2,
+  "giuste": 4,
+  "totale": 5,
+  "_idEsame": {
+    "$oid": "640ef499af8fc62e675869b4"
+  },
+  "risposte": {
+    "ANS0": "1",
+    "ANS1": "1",
+    "ANS2": "5",
+    "ANS3": "3",
+    "ANS4": "5"
+  },
+  "date": "16-3-2023"
+},{
+  "_id": {
+    "$oid": "641334db6734f36fc3945d3d"
+  },
+  "_idUser": 2,
+  "giuste": 4,
+  "totale": 5,
+  "_idEsame": {
+    "$oid": "640ef499af8fc62e675869b5"
+  },
+  "risposte": {
+    "ANS0": "3",
+    "ANS1": "1",
+    "ANS2": "0",
+    "ANS3": "1",
+    "ANS4": "2"
+  },
+  "date": "16-3-2023"
+},{
+  "_id": {
+    "$oid": "641334ed6734f36fc3945d3e"
+  },
+  "_idUser": 2,
+  "giuste": 1,
+  "totale": 5,
+  "_idEsame": {
+    "$oid": "640ef499af8fc62e675869b6"
+  },
+  "risposte": {
+    "ANS0": "4",
+    "ANS1": "3",
+    "ANS2": "3",
+    "ANS3": "2",
+    "ANS4": "4"
+  },
+  "date": "16-3-2023"
+}]

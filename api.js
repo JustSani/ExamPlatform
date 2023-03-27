@@ -15,7 +15,11 @@ router.get("/user", function (req, res){
 });
 router.get("/elencoVoti", function(req,res){
     tokenAdministration.ctrlTokenLocalStorage(req, function(payload){
-        mongoFunctions.find(res, "voti", {_idUser: payload._id}, {})
+        let obj = [
+            {$match: {_idUser: payload._id}},
+            {$sort: {_id: -1}}
+        ]
+        mongoFunctions.aggregate(res, "voti", obj)
     })
 })
 

@@ -16,7 +16,7 @@
 </head>
 <style>
 	
-	.giusta{
+		.giusta{
 		border-radius: 5px 5px 5px 5px;
 			background-color: green; color:white; padding: 3px;
 			font-weight: bold;
@@ -41,19 +41,13 @@
 		</div>
 	<!-- elenco domande-->
 	<div class="row">
-		<div class="col-sm-2">
-		<div class="col-sm-8 form-group" style="margin-top:20px; max-width: 1200px;">
-			<div id="intestazione"></div>
-		</div>
 		<div class="col-sm-2"></div>
-	</div>
-	<div style="width: 100%; padding: 40px">
-		<div  style="margin: auto; max-width: 1200px;">
-			<input type="button" id="consegna" class="btn btn-primary" onclick="window.location.href='registro.html'" value="back">
-			<br><br><br><br>
+		<div class="col-sm-8 form-group" >
+			<input type="button" id="consegna" class="btn btn-primary" onclick="window.location.href='registro.html'" value="Torna indietro">
+			<br><br>
 			<div id="elencoDomande"></div>
 		</div>
-		
+		<div class="col-sm-2"></div>
 	</div>
 	</div>
 	<br>
@@ -102,20 +96,22 @@
 						.val(i).addClass("form-check-input").attr("id",countTotalAnswers)
 						let label = $("<label>").attr("for", countTotalAnswers).text(quesito.risposte[i])
 						.addClass("form-check-label")
-						if(String(i) == risposteCorrette[j]){
-							option.addClass("giusta")
-							label.addClass("giusta")
-						}
 						if(String(i) == risposteUser[j]){
-							option.prop('checked',true);
+							if(String(i) == risposteCorrette[j]){
+								option.prop('checked',true);
+								option.addClass("giusta")
+								label.addClass("giusta")
+							}
+							else{
+								option.prop('checked',true)
+								option.addClass("sbagliata")
+								label.addClass("sbagliata")
+							}
+						}
+						else if(String(i) == risposteCorrette[j]){
 							option.addClass("giusta")
 							label.addClass("giusta")
 						}
-						if(String(i) == risposteUser[j] && risposteUser[j] != risposteCorrette[j]){
-							option.addClass("sbagliata")
-							label.addClass("sbagliata")
-						}
-						
 						
 						div.append(option)
 						console.log(i)

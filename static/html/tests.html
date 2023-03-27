@@ -37,15 +37,28 @@
 		Registro Vallauri
 		</h1></b>
 		</a>
+		
+		<form class="form-inline my-2 my-lg-0">
+			<input class="form-control mr-sm-2" type="button" value="logout" id="logout">
+		</form>
+		<script>
+			$("#logout").on("click", function(){
+				localStorage.removeItem("token")
+        		window.location.href="login.html";
+			})
+		</script>
 	</nav>
 	<br>
 	
 	<div style="max-width: 70vw" class="section">
-        <button type="button" class="btn btn-primary" id="back">Torna indietro</button>
-        <br><br>
+		<button type="button" class="btn btn-primary" id="back">Torna indietro</button>
+		<div  style="max-width: 500px; margin: auto;">
+			<div style="padding: 10px; width: 100%; text-align: right">N° Domande:</div>
+			
+		</div>
+        	
 		<center>
         <div  id="elencoEsami">
-			<div style="max-width: 500px;padding: 10px; text-align: right">N° Domande:</div>
 			<br>
 		</div>
 		</center>

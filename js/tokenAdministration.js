@@ -46,7 +46,11 @@ tokenAdministration.prototype.ctrlToken = function (req,callback){
 tokenAdministration.prototype.createToken = function (user){
     this.token=jwt.sign({
         "_id":user[0]._id,
-        "user":user[0].user,        
+        "user":user[0].user,
+        "data":user[0].data,
+        "citta":user[0].citta,
+        "nome":user[0].nome,
+        "cognome":user[0].cognome,
         "exp":Math.floor(Date.now()/1000 + 60 * 60 * 24)
     },this.privateKey);
     
